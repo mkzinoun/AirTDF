@@ -1,9 +1,9 @@
 <div class="container mt-3">
   <h1 class="mb-3">All our Bikes (<%= @bikes.length %>)</h1>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-space-around">
     <% @bikes.each do |bike| %>
-      <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
-        <div class="flat-card-image" style=""></div>
+      <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
+        <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><%= bike.bike_type %></h5>
           <p class="card-text"><%= bike.brand %></p>
