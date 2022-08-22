@@ -12,7 +12,7 @@
           <i class="fa-solid fa-euro-sign"><%= bike.price_per_day %></i>
         </div>
         <div class="card-body d-flex justify-content-evenly">
-          <%= link_to "More info", bikes_path(bikes), class: "card-link text-primary" %>
+          <%= link_to "More info", bikes_path, class: "card-link text-primary" %>
           <%= link_to "Edit", edit_bike_path(bike), class: "card-link text-warning" %>
           <%= link_to "Remove", bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
         </div>
