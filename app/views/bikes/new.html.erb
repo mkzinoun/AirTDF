@@ -1,2 +1,17 @@
-<h1>Bikes#new</h1>
-<p>Find me in app/views/bikes/new.html.erb</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="">
+        <h3 class="form-title fw-bold">Propose your bike to location</h3>
+        <%= simple_form_for @bike do |f| %>
+          <%#= f.input :type, collection: TYPES::BIKE, label_method: :type %>
+          <%= f.input :brand, placeholder: 'Scott' %>
+          <%= f.input :description, placeholder: 'Super vélo de route ! Même sans dopage, ça va vite !' %>
+          <%= f.input :price_per_day, placeholder: '10€' %>
+          <%#= f.input :photo, as: :file %>
+          <%= f.submit class: 'btn btn-flat' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
