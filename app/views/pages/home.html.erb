@@ -4,17 +4,17 @@
     <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
     <p>Change your life and learn to code at one of our campuses around the world.</p>
     <a class="btn btn-flat" href="#">Login</a>
+    <a class="btn btn-flat" href="/bikes">See all bikes</a>
   </div>
 </div>
 
 <div class="container">
-
-  <% @bikes.each do |bike| %>
-    <div class="cards">
+  <div class="cards">
+    <% @bikes.each do |bike| %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
         <%= link_to bike.bike_type, bike_path(bike) %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
 </div>
