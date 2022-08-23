@@ -1,7 +1,18 @@
 <h1>Hi <%= current_user.first_name %>, these are all your bikes</h1>
 
 <% @bikes.each do |bike| %>
-<%= bike.name %>
+<%= bike.bike_type %>
 <% end %>
 
+<h1>Here are all your booking requests to rent a bike</h1>
+<% @user_own_bookings.each do |booking| %>
+<%= booking.total_price %>
+<% end %>
+
+
+<h1>And here are other users requests to rent your bike(s)</h1>
+
+<% @rented_out_by_user.each do |booking| %>
+<%= booking.total_price %>
+<% end %>
 <%# Have to add cards and CSS %>

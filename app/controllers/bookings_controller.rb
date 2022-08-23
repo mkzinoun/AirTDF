@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
 
   def create
-
     @bike = Bike.find(params[:bike_id])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
@@ -9,6 +8,8 @@ class BookingsController < ApplicationController
     @booking.status = 'pending'
     @booking.total_price = @bike.price_per_day * (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date)
     @booking.save
+    authorize @booking, policy_class: BookingPolicy
+
     redirect_to bike_path(@bike)
   end
 

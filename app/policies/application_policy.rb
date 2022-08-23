@@ -8,6 +8,10 @@ class ApplicationPolicy
     @record = record
   end
 
+  def mydashboard?
+    true
+  end
+
   def index?
     false
   end
@@ -25,7 +29,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    true
   end
 
   def edit?
