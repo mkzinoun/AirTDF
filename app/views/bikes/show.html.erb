@@ -21,17 +21,19 @@
         </div>
         <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
       </div>
-      <div class="col-4">
-        <div class="flat-show-card">
-            <div class="d-flex justify-content-end mx-3 my-3">
-              <%= simple_form_for [@bike, @booking] do |f| %>
-                <%= f.input :start_date, as: :string %>
-                <%= f.input :end_date, as: :string %>
-                <button class="btn btn-success">Book !</button>
-              <% end %>
-            </div>
+      <% if current_user != @bike.user %>
+        <div class="col-4">
+          <div class="flat-show-card">
+              <div class="d-flex justify-content-end mx-3 my-3">
+                <%= simple_form_for [@bike, @booking] do |f| %>
+                  <%= f.input :start_date, as: :string %>
+                  <%= f.input :end_date, as: :string %>
+                  <button class="btn btn-success">Book !</button>
+                <% end %>
+              </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
