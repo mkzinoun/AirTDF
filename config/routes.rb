@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   resources :bookings, only: [:destroy]
   get "dashboard", to: "dashboards#mydashboard", as: "dashboard"
 
+  resources :bookings do
+    member do
+      patch :accept
+      patch :declined
+    end
+  end
 end
