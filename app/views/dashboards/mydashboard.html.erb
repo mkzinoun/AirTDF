@@ -30,10 +30,11 @@
         <p class="card-text"><%= Bike.find(booking.bike_id).description %></p>
         <p class="card-text">Your booking starts on <%= booking.start_date %> and finishes on <%= booking.end_date %></p>
         <span>The total price is</span><i class="fa-solid fa-euro-sign"> <%= booking.total_price %></i>
+        <p class="card-text"><%= booking.status %></p>
       </div>
       <div class="card-body d-flex justify-content-evenly">
-        <%= link_to "Edit", class: "card-link text-warning" %>
-        <%= link_to "Cancel", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
+        <%= link_to "Edit", bike_path(Bike.find(booking.bike_id), :booking_id => booking.id), class: "card-link text-warning" %>
+        <%= link_to "Cancel", booking_path(booking),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
       </div>
     </div>
   <% end %>
@@ -54,7 +55,7 @@
       </div>
       <div class="card-body d-flex justify-content-evenly">
         <%= link_to "Validate", class: "card-link text-warning" %>
-        <%= link_to "Refuse", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
+        <%= link_to "Refuse", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
       </div>
     </div>
   <% end %>
