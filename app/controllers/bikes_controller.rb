@@ -2,20 +2,23 @@ class BikesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @bikes = Bike.all
+    @bikes = policy_scope(Bike)
   end
 
   def show
     @bike = Bike.find(params[:id])
+    authorize @bike
   end
 
   def new
     @bike = Bike.new
+    authorize @bike
   end
 
   def create
     @bike = Bike.new(bike_params)
     @bike.user = current_user
+    authorize @bike
     if @bike.save
       redirect_to bike_path(@bike)
     else
@@ -24,10 +27,12 @@ class BikesController < ApplicationController
   end
 
   def edit
+    authorize @bike
     @bike = Bike.find(params[:id])
   end
 
   def update
+    authorize @bike
     @bike = Bike.find(params[:id])
     @bike.update(bike_params)
 
@@ -35,6 +40,7 @@ class BikesController < ApplicationController
   end
 
   def destroy
+    authorize @bike
     @bike = Bike.find(params[:id])
     @bike.destroy
 
