@@ -8,17 +8,29 @@
 
   <div class="card-trip">
     <img src="https://images.unsplash.com/photo-1571188654248-7a89213915f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
-    <div class="card-trip-infos">
-      <div>
-        <ul>
-        <li><%= @bike.bike_type %></li>
-        <li><%= @bike.brand %></li>
-        <li><%= @bike.address %></li>
-        <li><%= @bike.description %></li>
-        </ul>
+    <div class="row">
+      <div class="card-trip-infos col-8">
+        <div>
+          <ul>
+          <li><%= @bike.bike_type %></li>
+          <li><%= @bike.brand %></li>
+          <li><%= @bike.address %></li>
+          <li><%= @bike.description %></li>
+          </ul>
+        </div>
+        <h2 class="card-trip-pricing">Price per day: <%= @bike.price_per_day %></h2>
+        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
       </div>
-      <h2 class="card-trip-pricing">Price per day: <%= @bike.price_per_day %></h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+      <div class="col-4">
+        <div class="flat-show-card">
+          <h5>Book this bike !</h5>
+          <%= simple_form_for [@bike, @booking] do |f| %>
+            <%= f.input :start_date, as: :string %>
+            <%= f.input :end_date, as: :string %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
