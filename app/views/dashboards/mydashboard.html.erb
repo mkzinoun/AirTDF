@@ -1,0 +1,7 @@
+<h1>Hi <%= current_user.first_name %>, these are all your bikes</h1>
+
+<% @bikes.each do |bike| %>
+<%= bike.name %>
+<% end %>
+
+<%# Have to add cards and CSS %>
