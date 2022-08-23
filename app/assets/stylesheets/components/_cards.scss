@@ -9,8 +9,110 @@
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  padding: 16px
+  padding: 16px;
+  margin-right: 16px;
 }
+
+.product-card {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  overflow: hidden;
+}
+.product-card .logo-cart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-card .logo-cart img{
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+}
+.product-card .logo-cart i{
+  font-size: 27px;
+  color: #707070;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.product-card .logo-cart i:hover{
+  color: #333;
+}
+
+.product-card .content-details .content_name{
+  font-size: 24px;
+  font-weight: 500;
+  color: #161616;
+}
+
+.content-brand {
+  margin-top: 16px;
+  font-size: 16px;
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.product-card .content-price .content-option{
+  display: flex;
+  align-items: center;
+}
+.content-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.content-price .content-option .content{
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.price{
+  display: flex;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.product-card .button{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  border-radius: 25px;
+  margin-top: 30px;
+  overflow: hidden;
+}
+.product-card .button .button-layer{
+  position: absolute;
+  height: 100%;
+  width: 300%;
+  left: -100%;
+  background-image: linear-gradient(135deg,#131313, #2c363b,#2e2332, #43CBFF );
+  transition: all 0.4s ease;
+  border-radius: 25PX;
+}
+.product-card .button:hover .button-layer{
+  left: 0;
+}
+.product-card .button button{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+
 
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {

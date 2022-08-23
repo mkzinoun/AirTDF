@@ -1,25 +1,33 @@
 <div class="container mt-3">
-  <div class="d-flex justify-content-between">
-    <h1 class="mb-3">All our Bikes (<%= @bikes.length %>)</h1>
-    <%= link_to "Add bike", new_bike_path, class: "btn btn-primary text-decoration-none" %>
+  <div class="d-flex mb-3">
+    <h1 class="mb-3 p-2">All our Bikes</h1>
+    <span class="badge rounded-5 text-bg-primary bg-dark p-2 align-self-start"><%= @bikes.length %></span>
+    <%= link_to "Add bike", new_bike_path, class: "btn btn-cta ms-auto p-2 align-self-center" %>
   </div>
-  <div class="d-flex justify-space-around">
+  <div class="cards">
     <% @bikes.each do |bike| %>
-      <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
-        <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><%= bike.bike_type %></h5>
-          <p class="card-text"><%= bike.brand %></p>
-          <p class="card-text"><%= bike.address %></p>
-          <p class="card-text"><%= bike.description %></p>
-          <i class="fa-solid fa-euro-sign"><%= bike.price_per_day %></i>
+      <%= link_to bike_path(bike), style: "text-decoration:none" do %>
+        <div class="product-card" style="background-image: url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')">
+          <div class="logo-cart">
+            <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer">
+          </div>
+          <div class="content-details">
+            <span class="content-brand"><p class="card-text"><%= bike.brand %></p></span>
+            <p class="card-text"><%= bike.description %></p>
+          </div>
+          <div class="content-price">
+            <div class="content-option">
+              <span class="content badge rounded-5 text-bg-dark"><%= bike.bike_type %></span>
+            </div>
+            <p class="price">
+              <%= bike.price_per_day %><i class="fa-solid fa-euro-sign"></i>
+            </p>
+          </div>
         </div>
-        <div class="card-body d-flex justify-content-evenly">
-          <%= link_to "More info", bike_path(bike), class: "card-link text-primary" %>
-          <%= link_to "Edit", edit_bike_path(bike), class: "card-link text-warning" %>
-          <%= link_to "Remove", bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
-        </div>
-      </div>
+      <% end  %>
     <% end %>
   </div>
+
+
+
 </div>
