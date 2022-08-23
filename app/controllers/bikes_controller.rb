@@ -32,22 +32,22 @@ class BikesController < ApplicationController
   end
 
   def edit
-    authorize @bike
     @bike = Bike.find(params[:id])
+    authorize @bike
   end
 
   def update
-    authorize @bike
     @bike = Bike.find(params[:id])
     @bike.update(bike_params)
+    authorize @bike
 
     redirect_to bike_path(@bike)
   end
 
   def destroy
-    authorize @bike
     @bike = Bike.find(params[:id])
     @bike.destroy
+    authorize @bike
 
     redirect_to bikes_path, status: :see_other
   end
