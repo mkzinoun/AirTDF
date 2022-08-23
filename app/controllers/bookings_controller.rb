@@ -13,6 +13,23 @@ class BookingsController < ApplicationController
     redirect_to bike_path(@bike)
   end
 
+  def update
+    @bike = Bike.find(params[:bike_id])
+    @booking = Booking.find(params[:id])
+    @booking.status = 'pending'
+    @booking.total_price = @bike.price_per_day * (params[:booking][:end_date].to_date - params[:booking][:start_date].to_date)
+    @booking.update(booking_params)
+    authorize @booking, policy_class: BookingPolicy
+    redirect_to dashboard_path
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    authorize @booking, policy_class: BookingPolicy
+    @booking.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
+
   private
 
   def booking_params

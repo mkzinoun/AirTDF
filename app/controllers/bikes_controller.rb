@@ -7,7 +7,11 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
-    @booking = Booking.new
+    if params[:booking_id]
+      @booking = Booking.find(params[:booking_id])
+    else
+      @booking = Booking.new
+    end
     authorize @bike
   end
 
