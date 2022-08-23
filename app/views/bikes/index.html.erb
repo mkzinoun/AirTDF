@@ -1,5 +1,8 @@
 <div class="container mt-3">
-  <h1 class="mb-3">All our Bikes (<%= @bikes.length %>)</h1>
+  <div class="d-flex justify-content-between">
+    <h1 class="mb-3">All our Bikes (<%= @bikes.length %>)</h1>
+    <%= link_to "Add bike", new_bike_path, class: "btn btn-primary text-decoration-none" %>
+  </div>
   <div class="d-flex justify-space-around">
     <% @bikes.each do |bike| %>
       <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
