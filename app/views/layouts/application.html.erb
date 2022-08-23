@@ -12,58 +12,11 @@
 
   <body>
 
-    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img src="https://bike-all.fr/wp-content/uploads/2021/10/003-bicycle.png" />
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
-              </li>
-              <li class="nav-item dropdown">
-                <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Sign Up</a>
-                  <a class="dropdown-item" href="#">Login</a> <!--a enlever si user logged in-->
-                  <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
-                </div>
-              </li>
-        </div>
-      </div>
-    </div>
-
+    <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
 
     <%= yield %>
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="footer mt-10">
-            <div class="footer-links">
-              <a href="#"><i class="fab fa-github"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-facebook"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <div class="footer-links">
-              <a href="#">Terms and conditions</a>
-              <a href="#">About</a>
-              <a href="#">Contact us</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>
