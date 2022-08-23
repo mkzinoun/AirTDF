@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :bikes do
-    resources :bookings, only: [:create]
+    resources :bookings, only: %i[create update]
   end
-
+  resources :bookings, only: [:destroy]
   get "dashboard", to: "dashboards#mydashboard", as: "dashboard"
 
 end
