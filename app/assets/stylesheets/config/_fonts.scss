@@ -1,9 +1,10 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;700&family=Roboto+Condensed:wght@700&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Inter", "Roboto", "sans-serif";
-$headers-font: "Roboto", "Inter", "sans-serif";
+$body-font: 'Inter', sans-serif;
+$headers-font: 'Roboto', sans-serif;
+
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
@@ -14,3 +15,51 @@ $headers-font: "Roboto", "Inter", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+body {
+  font-family: 'Inter', sans-serif !important;
+}
+
+p {
+  font-family: $body-font;
+  font-size: 14px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif !important;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 20px;
+}
+
+/* Won't be used here */
+
+h5 {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+h6 {
+  font-size: 12px;
+  line-height: 20px;
+}
