@@ -6,8 +6,8 @@
         <%= simple_form_for @bike do |f| %>
           <%= f.input :bike_type, collection: Bike::TYPES, input_html: { class: "input" } %>
           <%= f.input :brand, placeholder: 'Scott', input_html: { class: "input" } %>
-          <%= f.input :address, placeholder: 'Place de Clichy', input_html: { class: "input" } %>
-          <%= f.input :description, placeholder: 'Super vélo de route ! Même sans dopage, ça va vite !', input_html: { class: "input" } %>
+          <%= f.input :address, placeholder: '16 Villa Gaudelet', input_html: { class: "input" } %>
+          <%= f.input :description, placeholder: 'Great bike ! Even without doping you can still feel like Armstrong', input_html: { class: "input" } %>
           <%= f.input :price_per_day, placeholder: '10€', input_html: { class: "input" } %>
           <%= f.input :photo, as: :file, input_html: { class: "input" } %>
           <%= f.submit class: 'btn btn-cta' %>

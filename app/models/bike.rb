@@ -1,5 +1,5 @@
 class Bike < ApplicationRecord
-  TYPES = ["mountain bike", "city bike", "road bike"]
+  TYPES = ["Mountain Bike", "City Bike", "Road Bike"]
   belongs_to :user
   has_many :bookings, dependent: :destroy
   has_one_attached :photo

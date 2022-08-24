@@ -28,29 +28,6 @@
   </div>
   </section>
 
-  <section class="section">
-    <span class="badge rounded-pill text-bg-dark">Owner</span>
-    <h2>Bookings requests</h2>
-    <div class="d-flex justify-space-around">
-      <% @rented_out_by_user.each do |booking| %>
-        <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
-          <img class="card-img-top" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title"><%= Bike.find(booking.bike_id).bike_type %></h5>
-            <p class="card-text"><%= Bike.find(booking.bike_id).brand %></p>
-            <p class="card-text"><%= Bike.find(booking.bike_id).address %></p>
-            <p class="card-text"><%= Bike.find(booking.bike_id).description %></p>
-            <p class="card-text">Your booking starts on <%= booking.start_date %> and finishes on <%= booking.end_date %></p>
-            <span>The total price is</span><i class="fa-solid fa-euro-sign"> <%= booking.total_price %></i>
-          </div>
-          <div class="card-body d-flex justify-content-evenly">
-            <%= link_to "Validate", class: "card-link text-warning" %>
-            <%= link_to "Refuse", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </section>
 
   <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -61,7 +38,7 @@
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
     <section class="section">
-      <h2>My bookings</h2>
+      <h2>My bookings requests</h2>
       <div class="d-flex justify-space-around">
         <% @user_own_bookings.each do |booking| %>
           <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
@@ -76,8 +53,13 @@
               <p class="card-text"><%= booking.status %></p>
             </div>
             <div class="card-body d-flex justify-content-evenly">
-              <%= link_to "Edit", bike_path(Bike.find(booking.bike_id), :booking_id => booking.id), class: "card-link text-warning" %>
-              <%= link_to "Cancel", booking_path(booking),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
+              <% if booking.status == 'pending' %>
+              <%= link_to "Accept", accept_booking_path(booking), data: {turbo_method: :patch }, class: "card-link text-warning" %>
+              <%= link_to "Refuse", refuse_booking_path(booking), data: {turbo_method: :patch }, class: "card-link text-danger" %>
+            <% elsif booking.status == 'accepted' %>
+              <p class="card-text">This booking has been validated</p>
+              <%= link_to "Cancel", cancel_booking_path(booking),  data: {turbo_method: :patch }, class: "card-link text-danger" %>
+            <% end %>
             </div>
           </div>
         <% end %>
