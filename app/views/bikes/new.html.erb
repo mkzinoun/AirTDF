@@ -6,7 +6,10 @@
         <%= simple_form_for @bike do |f| %>
           <%= f.input :bike_type, collection: Bike::TYPES, input_html: { class: "input" } %>
           <%= f.input :brand, placeholder: 'Scott', input_html: { class: "input" } %>
-          <%= f.input :address, placeholder: '16 Villa Gaudelet', input_html: { class: "input" } %>
+          <%= f.input :address,
+            input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+            wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+          %>
           <%= f.input :description, placeholder: 'Great bike ! Even without doping you can still feel like Armstrong', input_html: { class: "input" } %>
           <%= f.input :price_per_day, placeholder: '10€', input_html: { class: "input" } %>
           <%= f.input :photo, as: :file, input_html: { class: "input" } %>

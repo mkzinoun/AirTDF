@@ -1,4 +1,6 @@
 class Bike < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
   TYPES = ["Mountain Bike", "City Bike", "Road Bike"]
   belongs_to :user
   has_many :bookings, dependent: :destroy
