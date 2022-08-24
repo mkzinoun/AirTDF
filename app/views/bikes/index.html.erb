@@ -7,7 +7,11 @@
   <div class="cards">
     <% @bikes.each do |bike| %>
       <%= link_to bike_path(bike), style: "text-decoration:none" do %>
-        <div class="product-card" style="background-image: url('https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')">
+      <% if bike.photo.attached? %>
+        <div class="product-card" style="background-image: url('<%= cl_image_path bike.photo.key, height: 150, crop: :fill %>')">
+      <% else %>
+        <div class="product-card" style="background-image: url(https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)">
+      <% end %>
           <div class="logo-cart">
             <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer">
           </div>
@@ -27,7 +31,4 @@
       <% end  %>
     <% end %>
   </div>
-
-
-
 </div>

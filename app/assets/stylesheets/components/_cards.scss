@@ -5,6 +5,57 @@
   margin-top: 15px;
 }
 
+.card-bike {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  width: 353px;
+  height: 418px;
+  background: #FFFFFF;
+  border: 1px solid #EAECEE;
+  border-radius: 12px;
+
+}
+
+.card-bike-img {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  border-radius: 8px;
+}
+
+.card-bike-body {
+
+}
+
+.card-bike-type {
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.card-bike-brand {
+  display: flex;
+}
+
+.card-bike-address {
+  display: flex;
+}
+
+.card-bike-description {
+
+}
+
+.btn-delete {
+
+
+}
+
+
+
 .cards-contrainer {
   background-color: white;
   border-radius: 6px;
