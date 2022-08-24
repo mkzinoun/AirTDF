@@ -34,21 +34,27 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking, policy_class: BookingPolicy
     @booking.status = 'accepted'
-    @booking.save
+    if @booking.save
+      redirect_to dashboard_path
+    end
   end
 
   def refuse
     @booking = Booking.find(params[:id])
     authorize @booking, policy_class: BookingPolicy
     @booking.status = 'refused'
-    @booking.save
+    if @booking.save
+      redirect_to dashboard_path
+    end
   end
 
   def cancel
     @booking = Booking.find(params[:id])
     authorize @booking, policy_class: BookingPolicy
     @booking.status = 'cancelled'
-    @booking.save
+    if @booking.save
+      redirect_to dashboard_path
+    end
   end
 
   private

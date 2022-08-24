@@ -65,8 +65,9 @@
 }
 
 .product-card {
-  background-size: cover;
+  background-size: cover !important;
   background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
   border-radius: 16px;
   padding: 20px;
