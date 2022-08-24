@@ -1,26 +1,43 @@
 <div class="container py-5">
-  <div class="cards-contrainer">
-    <h2>Log in</h2>
 
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" } %>
-        <%= f.input :password,
-                    required: false,
-                    input_html: { autocomplete: "current-password" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<section class="vh-100">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 text-black">
+        <h1>Welcome back !</h1>
+        <div class="align-items-center h-custom-2">
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+            <div class="form-inputs">
+                <%= f.input :email,
+                            required: false,
+                            autofocus: true,
+                            label: 'Email',
+                            placeholder: 'tadeg.pogacar@uae.com',
+                            input_html: { autocomplete: "email", class: "input" },
+                            :label_html => { :class => 'label' } %>
+                <%= f.input :password,
+                            required: false,
+                            label: 'Password',
+                            input_html: { autocomplete: "current-password", class: "input" },
+                            :label_html => { :class => 'label' } %>
+                <%= f.input :remember_me, input_html: { :class => 'label' }, as: :boolean if devise_mapping.rememberable? %>
+            </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Sign in", class: "btn-cta" %>
+          </div>
+          <% end %>
+          <div class=" ">
+          <%= render "devise/shared/links" %>
+          </div>
+        </div>
       </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Log in" %>
-    </div>
-    <% end %>
-    <div class=" ">
-    <%= render "devise/shared/links" %>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="https://images.unsplash.com/photo-1444491741275-3747c53c99b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+          alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+      </div>
     </div>
   </div>
+</section>
 
 </div>
