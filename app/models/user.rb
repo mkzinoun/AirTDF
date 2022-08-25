@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bikes, dependent: :destroy
   has_many :bookings, dependent: :destroy
+  has_one_attached :photo
 
   #les velos que j'ai loue aux autres
   has_many :requested_bikes, through: :bikes, source: :bookings

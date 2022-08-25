@@ -33,10 +33,10 @@
             <%= link_to "My dashboard", dashboard_path, class: "nav-link mx-2" %>
           </li>
           <li class="nav-item dropdown">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= image_tag (cl_image_path current_user.photo.key), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profile", "#", class: "dropdown-item" %>
-              <%= link_to "Messages", "#", class: "dropdown-item" %>
+              <%= link_to "Profile", "https://memegenerator.net/img/instances/68155132/move-along-nothing-to-see-here.jpg", class: "dropdown-item" %>
+              <%= link_to "Messages", "https://memegenerator.net/img/instances/68155132/move-along-nothing-to-see-here.jpg", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

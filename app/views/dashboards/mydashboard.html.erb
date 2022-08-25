@@ -2,154 +2,88 @@
   <div class="container-header container">
     <h1 class="fw-bold"">Hello <%= current_user.first_name %> 🎉</h1>
     <h6 class="welcome">Welcome back to your garage !</h6>
-
     <nav class="mt-5">
       <div class="nav nav-pills" id="nav-tab" role="tablist">
-        <button class="nav-link nav-link-dashboard active" id="nav-requests-tab" data-bs-toggle="tab" data-bs-target="#nav-resquests" type="button" role="tab" aria-controls="nav-requests" aria-selected="true">My requests</button>
-        <button class="nav-link nav-link-dashboard" id="nav-bookings-tab" data-bs-toggle="tab" data-bs-target="#nav-bookings" type="button" role="tab" aria-controls="nav-bookings" aria-selected="true">My bookings</button>
+        <button class="nav-link nav-link-dashboard active" id="nav-bookings-tab" data-bs-toggle="tab" data-bs-target="#nav-bookings" type="button" role="tab" aria-controls="nav-bookings" aria-selected="true">My bookings</button>
+        <button class="nav-link nav-link-dashboard" id="nav-validations-tab" data-bs-toggle="tab" data-bs-target="#nav-validations" type="button" role="tab" aria-controls="nav-validations" aria-selected="true">My validations</button>
         <button class="nav-link nav-link-dashboard" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">My bikes</button>
       </div>
     </nav>
   </div>
 </div>
-<div class="container-header container">
+
+<div class="container">
+
   <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show" id="nav-resquests" role="tabpanel" aria-labelledby="nav-resquests-tab" tabindex="0">
-    <section class="section">
-
-      <div class="d-flex justify-space-around">
-        <% if @user_own_bookings.empty? %>
-          <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-            <div class="card-body">
-              <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
-              <p class="card-text">No bookings requests for now</p>
-              <%= link_to bikes_path, style: "text-decoration:none" do %>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-primary" type="button">Book a bike</button>
+    <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
+      <section class="section">
+        <div class="d-flex justify-space-around">
+          <% if @user_own_bookings.empty? %>
+            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
+              <div class="card-body">
+                <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
+                <p class="card-text">I have no bookings</p>
+                <%= link_to bikes_path, style: "text-decoration:none" do %>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-primary" type="button">Book a bike</button>
+                </div>
+                <% end %>
               </div>
-              <% end %>
             </div>
-          </div>
-        <% end %>
-        <% @user_own_bookings.each do |booking| %>
-          <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
-            <% if Bike.find(booking.bike_id).photo.attached? %>
-              <img class="card-img-top" src='<%= cl_image_path Bike.find(booking.bike_id).photo.key, height: 150, crop: :fill %>' alt="Card image cap">
-            <% else %>
-              <img class="card-img-top" src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80' alt="Card image cap">
+          <% end %>
+          <div class="cards">
+            <% @user_own_bookings.each do |booking| %>
+              <%= render "shared/card-my-bookings", booking: booking %>
             <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= Bike.find(booking.bike_id).bike_type %></h5>
-              <p class="card-text"><%= Bike.find(booking.bike_id).brand %></p>
-              <p class="card-text"><%= Bike.find(booking.bike_id).address %></p>
-              <p class="card-text"><%= Bike.find(booking.bike_id).description %></p>
-              <p class="card-text">Your booking starts on <%= booking.start_date %> and finishes on <%= booking.end_date %></p>
-              <span>The total price is</span><i class="fa-solid fa-euro-sign"> <%= booking.total_price %></i>
-              <p class="card-text mt-3 text-center"><em><%= booking.status %></em></p>
-            </div>
-            <div class="card-body d-flex justify-content-evenly">
-              <%= link_to "Edit", bike_path(Bike.find(booking.bike_id), :booking_id => booking.id), class: "card-link text-warning" %>
-              <%= link_to "Cancel", booking_path(booking),  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
-            </div>
           </div>
-        <% end %>
-      </div>
-    </section>
-  </div>
-
-  <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
-    <section class="section">
-
-      <div class="d-flex justify-space-around">
-
-        <% if @rented_out_by_user.empty? %>
-          <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-            <div class="card-body">
-              <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
-              <p class="card-text">No bookings requests for now </p>
-            </div>
-          </div>
-        <% end %>
-
-        <% @rented_out_by_user.each do |booking| %>
-          <div class="card shadow p-3 mb-5 bg-body rounded mx-3" style="width: 18rem;">
-            <% if Bike.find(booking.bike_id).photo.attached? %>
-              <img class="card-img-top" src='<%= cl_image_path Bike.find(booking.bike_id).photo.key, height: 150, crop: :fill %>' alt="Card image cap">
-            <% else %>
-              <img class="card-img-top" src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80' alt="Card image cap">
-            <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= Bike.find(booking.bike_id).bike_type %></h5>
-              <p class="card-text"><%= Bike.find(booking.bike_id).brand %></p>
-              <p class="card-text"><%= Bike.find(booking.bike_id).address %></p>
-              <p class="card-text"><%= Bike.find(booking.bike_id).description %></p>
-              <p class="card-text">Your booking starts on <%= booking.start_date %> and finishes on <%= booking.end_date %></p>
-              <span>The total price is</span><i class="fa-solid fa-euro-sign"> <%= booking.total_price %></i>
-              <p class="card-text mt-3 text-center"><em><%= booking.status %></em></p>
-            </div>
-            <div class="card-body d-flex justify-content-evenly">
-              <% if booking.status == 'pending' %>
-              <%= link_to "Accept", accept_booking_path(booking), data: {turbo_method: :patch }, class: "card-link text-warning" %>
-              <%= link_to "Refuse", refuse_booking_path(booking), data: {turbo_method: :patch }, class: "card-link text-danger" %>
-            <% elsif booking.status == 'accepted' %>
-              <p class="card-text">This booking has been validated</p>
-              <%= link_to "Cancel", cancel_booking_path(booking),  data: {turbo_method: :patch }, class: "card-link text-danger" %>
-            <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+        </div>
       </section>
-  </div>
+    </div>
 
-
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-    <section class="section">
-
-      <div class="d-flex justify-space-around">
-        <% if @bikes.empty? %>
-          <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-            <div class="card-body">
-              <h3 class="card-title"><i class="fa-solid fa-bicycle"></i></h3>
-              <p class="card-text">No bikes in your garage</p>
-              <%= link_to new_bike_path, style: "text-decoration:none" do %>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-outline-primary" type="button">Add a bike</button>
+    <div class="tab-pane fade show" id="nav-validations" role="tabpanel" aria-labelledby="nav-validations-tab" tabindex="0">
+      <section class="section">
+        <div class="d-flex justify-content-around">
+          <% if @rented_out_by_user.empty? %>
+            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
+              <div class="card-body">
+                <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
+                <p class="card-text">No bookings requests for now </p>
               </div>
-              <% end %>
             </div>
-          </div>
-        <% end %>
-        <% @bikes.each do |bike| %>
-          <div class="card card-bike">
-            <% if bike.photo.attached? %>
-              <img class="card-bike-img" src='<%= cl_image_path bike.photo.key, height: 150, crop: :fill %>' alt="Card image cap">
-            <% else %>
-              <img class="card-bike-img" src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80' alt="Card image cap">
+          <% end %>
+          <div class="cards">
+            <% @rented_out_by_user.each do |booking| %>
+              <%= render "shared/card-booking-validation", booking: booking %>
             <% end %>
-
-            <div>
-              <h5 class="card-bike-type"><%= bike.brand %></h5>
-              <p class="card-bike-description"><%= bike.description %></p>
-            </div>
-            <div>
-              <p class="card-bike-brand"><%= bike.bike_type %></p>
-              <p class="card-bike-address"><%= bike.address %></p>
-            </div>
-              <i class="fa-solid fa-euro-sign card-bike-price"><%= bike.price_per_day %></i>
-            </div>
-            <div class="btn-delete">
-              <%= link_to "Delete this bike", bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
-            </div>
-            <div class="btn-primary">
-              <%= link_to "Edit", edit_bike_path(bike), class: "card-link text-warning" %>
-            </div>
           </div>
-        <% end %>
-      </div>
-    </section>
-  </div>
-</div>
+        </div>
+      </section>
+    </div>
 
-</div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <section class="section">
+        <div class="d-flex justify-content-around">
+          <% if @bikes.empty? %>
+            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
+              <div class="card-body">
+                <h3 class="card-title"><i class="fa-solid fa-bicycle"></i></h3>
+                <p class="card-text">No bikes in your garage</p>
+                <%= link_to new_bike_path, style: "text-decoration:none" do %>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-outline-primary" type="button">Add a bike</button>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <div class="cards">
+            <% @bikes.each do |bike| %>
+              <%= render "shared/card-bike", bike: bike %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>
