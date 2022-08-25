@@ -22,7 +22,7 @@ bike4 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'TDF', address: '102 rue 
 bike5 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Deacathlon', address: '106 rue du Bac 75007 Paris', description: 'Fancy bike for fancy people', price_per_day: 50)
 bike6 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Decathlon', address: '26 rue Vavin 75006 Paris', description: 'Cosy ride guranteed', price_per_day: 40)
 bike7 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Intersport', address: '44 rue Vieille-du-Temple 75003', description: 'Glamorous bike', price_per_day: 25)
-bike8 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Velib City', address: '13 rue des Sussaies 75008 Paris', description: 'Does its work', price_per_day: 18)
+bike8 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Velib City', address: '1 place Vendôme 75001 Paris', description: 'Does its work', price_per_day: 18)
 bike9 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'Velib City', address: '12 rue Alexandre Parodi 75010 Paris', description: 'The worst bike ever', price_per_day: 5)
 bike10 = Bike.new(bike_type: Bike::TYPES.sample, brand: 'TDF', address: "8 rue de l'Exposition 75007 Paris", description: 'For a daily tour in the City', price_per_day: 22)
 
