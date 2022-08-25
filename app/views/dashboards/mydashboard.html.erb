@@ -137,7 +137,7 @@
               <i class="fa-solid fa-euro-sign card-bike-price"><%= bike.price_per_day %></i>
             </div>
             <div class="btn-delete">
-              <%= link_to "Delete", bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
+              <%= link_to "Delete this bike", bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-link text-danger" %>
             </div>
             <div class="btn-primary">
               <%= link_to "Edit", edit_bike_path(bike), class: "card-link text-warning" %>
