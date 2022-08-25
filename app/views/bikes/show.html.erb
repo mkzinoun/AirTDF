@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h1>Here is this bike's information</h1>
-      <%= link_to "Back to all bikes", bikes_path %>
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <%= link_to bikes_path do %>
+            <a><li class="breadcrumb-item text-decoration-none">Bikes</a></li>
+          <% end%>
+          <li class="breadcrumb-item active" aria-current="page"><%= @bike.brand %></li>
+        </ol>
+      </nav>
+      <h1>More information about <%= @bike.brand %> bike</h1>
     </div>
   </div>
 
@@ -22,7 +29,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="card-trip-infos col-8">
+      <div class="card-trip-infos col-7">
         <div class="">
           <ul class="card-trip-list">
           <li>Type : <%= @bike.bike_type %></li>
@@ -35,29 +42,38 @@
         <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
       </div>
       <% if current_user != @bike.user %>
-        <div class="col-4">
-          <div class="flat-show-card">
-              <div class="d-flex justify-content-end mx-3 my-3">
+        <div class="col-5 p-5">
+          <div class="card-booking ">
+              <div class="mx-6 my-6">
 
                 <%= simple_form_for [@bike, @booking],
                                     html: {
                                       data: {
                                         controller: 'flatpickr'
-                                      }
+
+                                      },
+
                                     } do |f| %>
-                  <%= f.input :start_date, as: :string,
+                                      <%= f.input :start_date, as: :string,
+
                               input_html: {
                                 data: {
-                                  flatpickr_target: 'startDateInput',
-                                }
+                                  flatpickr_target: 'startDateInput'
+
+                                },
+                                class: "d-inline p-2"
                               } %>
-                  <%= f.input :end_date, as: :string,
-                              input_html: {
-                                data: {
-                                  flatpickr_target: 'endDateInput'
-                                }
-                              } %>
-                  <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+
+
+                    <%= f.input :end_date, as: :string,
+                                input_html: {
+                                  data: {
+                                    flatpickr_target: 'endDateInput'
+                                  },
+                                  class: "d-inline p-2"
+                                } %>
+                    <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+
                 <% end %>
 
               </div>
