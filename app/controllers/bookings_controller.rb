@@ -15,7 +15,6 @@ class BookingsController < ApplicationController
       flash[:alert] = " a problem has occurred while processing your booking."
       redirect_to bike_path(@bike)
     end
-
   end
 
   def update
