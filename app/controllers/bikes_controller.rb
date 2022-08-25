@@ -55,10 +55,12 @@ class BikesController < ApplicationController
     authorize @bike
     if @bike.update(bike_params)
       flash[:notice] = "Your bike has been updated"
+      redirect_to bike_path(@bike)
     else
       flash[:alert] = "Error ! Your bike has not been updated"
+      redirect_to edit_bike_path(@bike)
     end
-    redirect_to bike_path(@bike)
+
   end
 
   def destroy
