@@ -33,8 +33,10 @@ class BikesController < ApplicationController
     @bike.user = current_user
     authorize @bike
     if @bike.save
+      flash[:notice] = "Your bike has been added to the rent bikes list"
       redirect_to bike_path(@bike)
     else
+      flash[:alert] = "Error ! Your bike has not been added to the rent bikes list"
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,9 +48,12 @@ class BikesController < ApplicationController
 
   def update
     @bike = Bike.find(params[:id])
-    @bike.update(bike_params)
     authorize @bike
-
+    if @bike.update(bike_params)
+      flash[:notice] = "Your bike has been updated"
+    else
+      flash[:alert] = "Error ! Your bike has not been updated"
+    end
     redirect_to bike_path(@bike)
   end
 
@@ -56,7 +61,7 @@ class BikesController < ApplicationController
     @bike = Bike.find(params[:id])
     @bike.destroy
     authorize @bike
-
+    flash[:notice] = "Bike has been destroyed"
     redirect_to bikes_path, status: :see_other
   end
 
