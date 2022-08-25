@@ -1,14 +1,16 @@
-<div class="container mt-3">
-  <div class="d-flex mb-3">
-    <h1 class="mb-3 p-2">All our Bikes</h1>
-    <span class="badge rounded-5 text-bg-primary bg-dark p-2 align-self-start"><%= @bikes.length %></span>
-    <%= link_to "Rent my bike", new_bike_path, class: "btn btn-cta ms-auto p-2 align-self-center" %>
-  </div>
-  <div class="d-flex">
-    <div class="cards">
-      <% @bikes.each do |bike| %>
-        <%= render "shared/card-bike", bike: bike %>
-      <% end %>
+<div class="header">
+  <div class="container-header container">
+    <div class="d-flex mb-3">
+      <h1 class="mb-3 p-2 fw-bold">All our Bikes</h1>
+      <span class="badge rounded-5 text-bg-primary bg-dark p-2 align-self-start"><%= @bikes.length %></span>
+      <%= link_to "Rent my bike", new_bike_path, class: "btn btn-cta ms-auto p-2 align-self-center" %>
+    </div>
+    <div class="d-flex">
+      <div class="cards">
+        <% @bikes.each do |bike| %>
+          <%= render "shared/card-bike", bike: bike %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

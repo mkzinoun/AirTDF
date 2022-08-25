@@ -1,18 +1,21 @@
+<div class="header">
+  <div class="container-header container">
+    <h1 class="fw-bold"">Hello <%= current_user.first_name %> 🎉</h1>
+    <h6 class="welcome">Welcome back to your garage !</h6>
+    <nav class="mt-5">
+      <div class="nav nav-pills" id="nav-tab" role="tablist">
+        <button class="nav-link nav-link-dashboard active" id="nav-bookings-tab" data-bs-toggle="tab" data-bs-target="#nav-bookings" type="button" role="tab" aria-controls="nav-bookings" aria-selected="true">My bookings</button>
+        <button class="nav-link nav-link-dashboard" id="nav-validations-tab" data-bs-toggle="tab" data-bs-target="#nav-validations" type="button" role="tab" aria-controls="nav-validations" aria-selected="true">My validations</button>
+        <button class="nav-link nav-link-dashboard" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">My bikes</button>
+      </div>
+    </nav>
+  </div>
+</div>
+
 <div class="container">
 
-  <h1 class="fw-bold">Hello <%= current_user.first_name %> 🎉</h1>
-  <h6 class="welcome">Welcome back to your garage !</h6>
-
-  <nav class="mt-5">
-    <div class="nav nav-pills" id="nav-tab" role="tablist">
-      <button class="nav-link nav-link-dashboard active" id="nav-requests-tab" data-bs-toggle="tab" data-bs-target="#nav-resquests" type="button" role="tab" aria-controls="nav-requests" aria-selected="true">My bookings</button>
-      <button class="nav-link nav-link-dashboard" id="nav-bookings-tab" data-bs-toggle="tab" data-bs-target="#nav-bookings" type="button" role="tab" aria-controls="nav-bookings" aria-selected="true">My validations</button>
-      <button class="nav-link nav-link-dashboard" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">My bikes</button>
-    </div>
-  </nav>
-
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show" id="nav-resquests" role="tabpanel" aria-labelledby="nav-resquests-tab" tabindex="0">
+    <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
       <section class="section">
         <div class="d-flex justify-space-around">
           <% if @user_own_bookings.empty? %>
@@ -37,7 +40,7 @@
       </section>
     </div>
 
-    <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
+    <div class="tab-pane fade show" id="nav-validations" role="tabpanel" aria-labelledby="nav-validations-tab" tabindex="0">
       <section class="section">
         <div class="d-flex justify-content-around">
           <% if @rented_out_by_user.empty? %>
