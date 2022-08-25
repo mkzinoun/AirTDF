@@ -10,10 +10,14 @@ User.destroy_all
 Bike.destroy_all
 puts 'creating 4 users & 15 bikes'
 
-user1 = User.new(first_name: 'Ariel', last_name: 'Jurke', email: 'ariel@abc.com', password: 'azerty', phone_number: '0503050434')
-user2 = User.new(first_name: 'Karim', last_name: 'Zin', email: 'karim@abc.com', password: 'azerty', phone_number: '0503050434')
-user3 = User.new(first_name: 'Alexandre', last_name: 'Fleur', email: 'alexandre@abc.com', password: 'azerty', phone_number: '0503050434')
-user4 = User.new(first_name: 'Matteo', last_name: 'Bianc', email: 'matteo@abc.com', password: 'azerty', phone_number: '0503050434')
+user1 = User.new(first_name: 'Romain', last_name: 'Paillard', email: 'romain@abc.com', password: 'azerty', phone_number: '0503050434')
+user2 = User.new(first_name: 'Boris', last_name: 'Paillard', email: 'boris@abc.com', password: 'azerty', phone_number: '0503050434')
+user3 = User.new(first_name: 'Diane', last_name: 'Johnston-Roussillon', email: 'diane@abc.com', password: 'azerty', phone_number: '0503050434')
+user4 = User.new(first_name: 'Paul', last_name: 'Portier', email: 'paul@abc.com', password: 'azerty', phone_number: '0503050434')
+user1.photo.attach(io: URI.open("https://media-exp1.licdn.com/dms/image/C5603AQEXicEGcgYBOQ/profile-displayphoto-shrink_800_800/0/1517764268318?e=1666828800&v=beta&t=MAxLCV9i595HRSpuXCyYUtbv2ngZQofLUwppNVfkdvM") , filename: "user1.png", content_type: "image/png")
+user2.photo.attach(io: URI.open("https://media-exp1.licdn.com/dms/image/C4E03AQEfSGDe5SR0vQ/profile-displayphoto-shrink_400_400/0/1525092669872?e=1666828800&v=beta&t=TpAnM5Ewp40dPqYPVVOeANXZeuCrU-ls0jb4DilYn2c") , filename: "user1.png", content_type: "image/png")
+user3.photo.attach(io: URI.open("https://media-exp1.licdn.com/dms/image/C4E03AQHQOltQOMiIyQ/profile-displayphoto-shrink_800_800/0/1517528413961?e=1666828800&v=beta&t=1PbAHmX5gPMULdorB1cy06PdCmJZG3L7yYbBL8iz8nc") , filename: "user1.png", content_type: "image/png")
+user4.photo.attach(io: URI.open("https://media-exp1.licdn.com/dms/image/C4D03AQFU1DDVSsePEQ/profile-displayphoto-shrink_800_800/0/1593019224344?e=1666828800&v=beta&t=y9U6p-Tfeh34QWruC86kcf-peIKqDpOCWpmMupoaVzc") , filename: "user1.png", content_type: "image/png")
 
 user1.save!
 user2.save!
@@ -25,7 +29,7 @@ bike2 = Bike.new(bike_type: "City Bike", brand: 'Rossolini', address: '130 rue O
 bike3 = Bike.new(bike_type: "Mountain Bike", brand: 'Mason', address: '92 rue Réaumur 75002 Paris', description: 'A fine bike for a nice day', price_per_day: 15)
 bike4 = Bike.new(bike_type: "Mountain Bike", brand: 'Santa Cruz', address: '102 rue de Provence 75009 Paris', description: 'Will take you from point A to point B', price_per_day: 12)
 bike5 = Bike.new(bike_type: "City Bike", brand: 'WegoBoard', address: '106 rue du Bac 75007 Paris', description: 'Fancy bike for fancy people', price_per_day: 50)
-bike6 = Bike.new(bike_type: "City Bike", brand: 'NDIE', address: '26 rue Vavin 75006 Paris', description: 'Cosy ride guranteed', price_per_day: 40)
+bike6 = Bike.new(bike_type: "City Bike", brand: 'NDIE', address: '26 rue Vavin 75006 Paris', description: 'Cosy ride guaranteed', price_per_day: 40)
 bike7 = Bike.new(bike_type: "Mountain Bike", brand: 'Trek', address: '44 rue Vieille-du-Temple 75003 Paris', description: 'Glamorous bike', price_per_day: 25)
 bike8 = Bike.new(bike_type: "Road Bike", brand: 'Wilier', address: '1 place Vendome, 75001 Paris', description: 'Does its work', price_per_day: 18)
 bike9 = Bike.new(bike_type: "Road Bike", brand: 'Verve', address: '12 rue Alexandre Parodi 75010 Paris', description: 'The worst bike ever', price_per_day: 5)
