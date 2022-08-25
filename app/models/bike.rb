@@ -1,4 +1,10 @@
 class Bike < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_custom_bike,
+    against: [ :bike_type, :brand, :address],
+    using: {
+    tsearch: { prefix: true }
+    }
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   TYPES = ["Mountain Bike", "City Bike", "Road Bike"]

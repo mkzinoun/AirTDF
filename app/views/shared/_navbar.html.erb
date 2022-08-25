@@ -2,7 +2,16 @@
   <div class="container-fluid">
 
     <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "https://png.pngtree.com/png-vector/20220629/ourmid/pngtree-bicycle-logo-vector-icon-illustration-design-png-image_5526728.png" %>
+      <%= image_tag "logo.png", alt: "AirTDF logo"%>
+    <% end %>
+
+    <%= form_with url: bikes_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "What bike are you looking for?"
+      %>
+      <%= submit_tag "Search", class: "btn search-btn" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +25,9 @@
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Find a bike", bikes_path, class: "nav-link mx-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Add my bike", new_bike_path, class: "nav-link mx-2" %>
           </li>
           <li class="nav-item">
             <%= link_to "My dashboard", dashboard_path, class: "nav-link mx-2" %>

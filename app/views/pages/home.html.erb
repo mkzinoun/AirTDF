@@ -6,7 +6,10 @@
     <div class="container">
       <div class="row">
         <div class="col-6">
-          <a class="btn btn-flat" href="/users/sign_in">Login</a>
+          <% if user_signed_in? %>
+          <% else %>
+            <a class="btn btn-flat" href="/users/sign_in">Login</a>
+          <% end %>
           <a class="btn btn-flat" href="/bikes">See all our bikes</a>
         </div>
       </div>

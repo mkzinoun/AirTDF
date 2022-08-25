@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     @booking.save
     authorize @booking, policy_class: BookingPolicy
 
-    redirect_to bike_path(@bike)
+    redirect_to dashboard_path
   end
 
   def update
