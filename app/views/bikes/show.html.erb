@@ -1,8 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h1>Here is this bike's information</h1>
-      <%= link_to "Back to all bikes", bikes_path %>
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <%= link_to bikes_path do %>
+            <a><li class="breadcrumb-item text-decoration-none">Bikes</a></li>
+          <% end%>
+          <li class="breadcrumb-item active" aria-current="page">Details</li>
+        </ol>
+      </nav>
+      <h1><%= @bike.brand %></h1>
     </div>
   </div>
 
@@ -26,44 +33,77 @@
       </div>
     </div>
     <div class="row">
-      <div class="card-trip-infos col-8">
-        <div class="">
-          <ul class="card-trip-list">
-          <li>Type : <%= @bike.bike_type %></li>
-          <li>Brand : <%= @bike.brand %></li>
-          <li>Address : <%= @bike.address %></li>
-          <li>Description : <%= @bike.description %></li>
-          </ul>
-          <h2 class="card-trip-pricing ms-4 mt-5 "><button id= "dayprice" class="btn btn-dark disabled">Price per day: <%= @bike.price_per_day %>€</button></h2>
+      <div class="card-trip-infos col-7">
+        <div class="row px-4">
+          <div class="card-owner">
+            <div class="col-sm-6">
+              <p>Owner</p>
+              <h6><%= @owner.first_name %> <%= @owner.last_name %></li></h6>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h6><i class="fa-solid fa-bicycle p-2"></i><%= @bike.bike_type %></h6>
+          </div>
+          <div class="col-sm-6">
+            <h6><i class="fa-solid fa-brush p-2"></i><%= @bike.brand %></h6>
+          </div>
+          <div class="col-sm-6">
+            <h6><i class="fa-solid fa-location-dot p-2"></i><%= @bike.address %></h6>
+          </div>
+          <div class="col-sm-6">
+            <h6><i class="fa-solid fa-circle-info p-2"></i><%= @bike.description %></h6>
+          </div>
+          <div class="col-sm-6">
+            <button id="dayprice" disabled data-bs-toggle="button"><%= @bike.price_per_day %>€/day</button>
+          </div>
+          <div>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          </div>
         </div>
-        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
       </div>
       <% if current_user != @bike.user %>
-        <div class="col-4">
-          <div class="flat-show-card">
-              <div class="d-flex justify-content-end mx-3 my-3">
+        <div class="col-5 p-5">
+          <div class="card-booking ">
+              <div class="mx-6 my-6">
+              <h5>Booking</h5>
 
                 <%= simple_form_for [@bike, @booking],
                                     html: {
                                       data: {
-                                        controller: 'flatpickr'
-                                      }
-                                    } do |f| %>
-                  <%= f.input :start_date, as: :string,
-                              input_html: {
-                                data: {
-                                  flatpickr_target: 'startDateInput',
-                                }
-                              } %>
-                  <%= f.input :end_date, as: :string,
-                              input_html: {
-                                data: {
-                                  flatpickr_target: 'endDateInput'
-                                }
-                              } %>
-                  <%= f.submit 'Book now!', class: 'btn btn-primary' %>
-                <% end %>
+                                        controller: 'flatpickr',
 
+                                      },
+                                    class: "row",
+                                    } do |f| %>
+                                    <div class="col-sm">
+                                      <%= f.input :start_date, as: :string,
+
+                              input_html: {
+                                data: {
+                                  flatpickr_target: 'startDateInput'
+
+                                },
+                              } %>
+                              </div>
+
+                    <div class="col-sm">
+                    <%= f.input :end_date, as: :string,
+                                input_html: {
+                                  data: {
+                                    flatpickr_target: 'endDateInput'
+                                  },
+                                } %>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <h6>Price total: </h6>
+                      </div>
+                      <div class="col-sm-4">
+                        <%= f.submit 'Book now!', class: 'btn btn-primary' %>
+                      </div>
+                    </div>
+                <% end %>
+                </div>
               </div>
           </div>
         </div>

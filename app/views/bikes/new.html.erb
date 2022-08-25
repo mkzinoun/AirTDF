@@ -1,22 +1,32 @@
 <div class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-      <div class="">
-        <h3 class="form-title fw-bold">Propose your bike to location</h3>
-        <%= simple_form_for @bike do |f| %>
-          <%= f.input :bike_type, collection: Bike::TYPES, label: 'Type', label_html: { class: "label" }, input_html: { class: "input" } %>
-          <%= f.input :brand, placeholder: 'Scott', label: 'Brand', label_html: { class: "label" }, input_html: { class: "input" } %>
-          <%= f.input :address,
-            label: 'Address',
-            input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
-            wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-          %>
-          <%= f.input :description, placeholder: 'Great bike ! Even without doping you can still feel like Armstrong', label: 'Description', input_html: { class: "input" } %>
-          <%= f.input :price_per_day, placeholder: '10€', label: 'Price per day', input_html: { class: "input" } %>
-          <%= f.input :photo, as: :file, label: 'Photo', input_html: { class: "input" } %>
-          <%= f.submit class: 'btn btn-cta' %>
-        <% end %>
+  <section class="vh-100">
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-sm-6 text-black">
+        <div class="">
+          <h3 class="form-title fw-bold">Propose your bike to location</h3>
+          <%= simple_form_for @bike do |f| %>
+            <%= f.input :bike_type, collection: Bike::TYPES, label: 'Type', label_html: { class: "label" }, input_html: { class: "input" } %>
+            <%= f.input :brand, placeholder: 'Scott', label: 'Brand', label_html: { class: "label" }, input_html: { class: "input" } %>
+            <%= f.input :address,
+              label: 'Address',
+              label_html: { class: "label" },
+              input_html: {data: {address_autocomplete_target: "address"}, class: "input d-none"},
+              wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+            %>
+            <%= f.input :description, placeholder: 'Great bike ! Even without doping you can still feel like Armstrong', label: 'Description', label_html: { class: "label" }, input_html: { class: "input" } %>
+            <%= f.input :price_per_day, placeholder: '10€', label: 'Price per day', label_html: { class: "label" }, input_html: { class: "input" } %>
+            <%= f.input :photo, as: :file, label: 'Photo', label_html: { class: "label" }, input_html: { class: "input" } %>
+            <%= f.submit "Add to pool", class: 'btn btn-cta' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-6 text-black">
+        <div class="image-bike-new-container">
+          <img src="https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1018&q=80"
+          alt="Rent image" class="w-100 image-bike-new">
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
