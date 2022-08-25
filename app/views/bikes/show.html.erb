@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-header container">
   <div class="row">
     <div class="col-6">
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-8">
-                        <h6>Price total: </h6>
+                        <h6>Total price : <%= @booking.total_price %></h6>
                       </div>
                       <div class="col-sm-4">
                         <%= f.submit 'Book now!', class: 'btn btn-primary' %>

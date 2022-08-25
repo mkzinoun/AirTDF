@@ -1,0 +1,22 @@
+
+
+.nav_pills {
+  border-radius: 0px;
+}
+
+.nav-pills .nav-link {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 16px;
+  border-radius: 0px;
+  color: #14141C;
+}
+
+
+.nav-pills .nav-link.active {
+  background-color: white;
+  border-bottom: 1px solid #3E87F6;
+  color: #3E87F6;
+}

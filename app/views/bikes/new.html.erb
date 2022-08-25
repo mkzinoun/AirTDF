@@ -1,10 +1,9 @@
-<div class="container py-5">
-  <section class="vh-100">
-    <div class="container-fluid">
+<div class="container-header container">
+    <div class="container">
       <div class="row">
       <div class="col-sm-6 text-black">
         <div class="">
-          <h3 class="form-title fw-bold">Propose your bike to location</h3>
+          <h1 class="form-title fw-bold">Propose your bike to location</h1>
           <%= simple_form_for @bike do |f| %>
             <%= f.input :bike_type, collection: Bike::TYPES, label: 'Type', label_html: { class: "label" }, input_html: { class: "input" } %>
             <%= f.input :brand, placeholder: 'Scott', label: 'Brand', label_html: { class: "label" }, input_html: { class: "input" } %>
@@ -28,5 +27,4 @@
         </div>
       </div>
     </div>
-  </section>
 </div>
