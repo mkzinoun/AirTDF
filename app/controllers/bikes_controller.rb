@@ -11,6 +11,7 @@ class BikesController < ApplicationController
 
   def show
     @bike = Bike.find(params[:id])
+    @owner = @bike.user
     @markers = @bike.geocode.map do
       {
         lat: @bike.latitude,
@@ -66,7 +67,7 @@ class BikesController < ApplicationController
     @bike.destroy
     authorize @bike
     flash[:notice] = "Bike has been destroyed"
-    redirect_to bikes_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other
   end
 
   private
