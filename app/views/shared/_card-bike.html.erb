@@ -17,13 +17,9 @@
           </h6>
           <ul class="dropdown-menu">
 
-            <span data-controller="sweetalert" data-action="click->sweetalert#alert" id="sweet-alert-demo">
 
-              <%= link_to bike_path(bike), data: { turbo_method: :delete } do %>
-                <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-trash-can px-2"></i>Delete</p></li>
+                <li><p data-controller="sweetalert" data-action="click->sweetalert#alert" id="sweet-alert-demo" class="dropdown-item text-decoration-none"><i class="fa-solid fa-trash-can px-2"></i>Delete</p></li>
                 <%= render "alert", bike: bike %>
-              <% end %>
-            </span>
             <%= link_to edit_bike_path(bike) do  %>
               <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-pen px-2"></i>Edit</p></li>
             <% end %>

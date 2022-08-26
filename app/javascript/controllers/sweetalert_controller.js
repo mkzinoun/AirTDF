@@ -16,4 +16,12 @@ export default class extends Controller {
       template: '#my-template'
     })
   }
+
+  booking_alert() {
+    console.log("coucou c'est nous on est de retour")
+
+    Swal.fire({
+      template: '#my-template2'
+    })
+  }
 }
