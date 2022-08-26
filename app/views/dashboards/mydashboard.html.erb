@@ -17,18 +17,12 @@
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
       <section class="section">
-        <div class="d-flex justify-space-around">
+        <div class="d-flex justify-content-start align-items-center">
           <% if @user_own_bookings.empty? %>
-            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-              <div class="card-body">
-                <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
-                <p class="card-text">I have no bookings</p>
-                <%= link_to bikes_path, style: "text-decoration:none" do %>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-primary" type="button">Book a bike</button>
-                </div>
-                <% end %>
-              </div>
+            <%= render "shared/emptystates" %>
+            <div class="empty-content">
+              <h3>No bookings</h3>
+              <%= link_to "Find a bike", bikes_path, class: "btn btn-outline-dark" %>
             </div>
           <% end %>
           <div class="cards">
@@ -42,13 +36,11 @@
 
     <div class="tab-pane fade show" id="nav-validations" role="tabpanel" aria-labelledby="nav-validations-tab" tabindex="0">
       <section class="section">
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-start align-items-center">
           <% if @rented_out_by_user.empty? %>
-            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-              <div class="card-body">
-                <h3 class="card-title"><i class="fa-solid fa-comments"></i></h3>
-                <p class="card-text">No bookings requests for now </p>
-              </div>
+            <%= render "shared/emptystates" %>
+            <div class="empty-content">
+              <h3>No validation requests</h3>
             </div>
           <% end %>
           <div class="cards">
@@ -63,18 +55,12 @@
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
       <section class="section">
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-start">
           <% if @bikes.empty? %>
-            <div class="card card-empty text-center rounded-3 border border-1 p-3 mb-5 mx-3">
-              <div class="card-body">
-                <h3 class="card-title"><i class="fa-solid fa-bicycle"></i></h3>
-                <p class="card-text">No bikes in your garage</p>
-                <%= link_to new_bike_path, style: "text-decoration:none" do %>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-outline-primary" type="button">Add a bike</button>
-                </div>
-                <% end %>
-              </div>
+            <%= render "shared/emptystates" %>
+            <div class="empty-content">
+              <h3>No bikes</h3>
+              <%= link_to "Add a bike", new_bike_path, class: "btn btn-outline-dark" %>
             </div>
           <% end %>
           <div class="cards">
