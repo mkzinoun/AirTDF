@@ -1,9 +1,9 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;700;800&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&family=Oxygen:wght@700&display=swap');
 
 // Define fonts for body and headers
 $base-font: 'Inter', sans-serif;
-$header-font: 'Open Sans', sans-serif;
+$header-font: 'Oxygen', sans-serif;
 
 p {
   font-size: 14px;
@@ -29,7 +29,7 @@ h3 {
 
 .welcome {
   color: gray;
-  font-family: 'Inter';
+  font-family: 'Heebo';
 }
 
 h4 {
