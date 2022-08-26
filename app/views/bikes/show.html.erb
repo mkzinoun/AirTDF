@@ -11,24 +11,25 @@
       </nav>
       <h1><%= @bike.brand %></h1>
     </div>
-    <div class="col-6 d-flex justify-content-end">
-       <% if @booking.status != 'cancelled' %>
-          <%= link_to dashboard_path do %>
-            <button type="button" class="btn btn-outline-primary mx-2"><i class="fa-solid fa-pen pe-2"></i>Edit</button>
-          <% end %>
-          <%= link_to dashboard_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do  %>
-            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-xmark px-2"></i>Cancel</button>
-          <% end %>
-        <% end %>
-    </div>
-  </div>
 
+<%#     <div class="col-6 d-flex justify-content-end">
+ %>       <%# if @booking.status != 'cancelled' %>
+          <%#= link_to dashboard_path do %>
+<%#             <button type="button" class="btn btn-outline-primary mx-2"><i class="fa-solid fa-pen pe-2"></i>Edit</button>
+ %>          <%# end %>
+          <%#= link_to dashboard_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do  %>
+<%#             <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-xmark px-2"></i>Cancel</button>
+ %>          <%# end %>
+        <%# end %>
+ <%#    </div>
+  </div>
+ %>
   <div class="card-trip">
     <div class="container">
       <div class="row">
         <div class="col-6 show-bike">
           <% if @bike.photo.attached? %>
-            <img class="half-page" src='<%= cl_image_path @bike.photo.key, height: 150, crop: :fill %>'>
+            <img class="img-size-half-page" src='<%= cl_image_path @bike.photo.key %>'>
           <% else %>
             <img class="half-page" src='https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'>
           <% end %>
@@ -49,7 +50,7 @@
               <p>Owner</p>
               <h6><%= @owner.first_name %> <%= @owner.last_name %></li></h6>
             </div>
-          <div class="card-owner row">
+          <div class="card-owner row" style="padding: 16px">
             <div class="col-sm-6">
               <h6><i class="fa-solid fa-bicycle p-2"></i><%= @bike.bike_type %></h6>
             </div>
@@ -63,7 +64,7 @@
               <h6><i class="fa-solid fa-circle-info p-2"></i><%= @bike.description %></h6>
             </div>
             <div class="col-sm-6">
-              <button id="dayprice" disabled data-bs-toggle="button"><%= @bike.price_per_day %>€/day</button>
+              <button id="dayprice" disabled data-bs-toggle="button"><%= @bike.price_per_day.round %>€ / day</button>
             </div>
           </div>
           <div class="col-sm-12 py-5">
@@ -71,46 +72,48 @@
             <%= render "shared/list-group" %>
           </div>
           <div>
-            <img image_tag (cl_image_path @owner.photo.key) class="avatar" />
+            <%= image_tag (cl_image_path @owner.photo.key), class: "card-trip-user avatar-bordered"%>
           </div>
         </div>
       </div>
       <% if current_user != @bike.user %>
         <div class="col-5 p-5">
           <div class="card-booking ">
-              <div class="mx-6 my-6">
+            <div class="mx-6 my-6" data-controller="dynamic-booking-price" data-dynamic-booking-price-price-value="<%= @bike.price_per_day %>">
               <h5>Booking</h5>
 
                 <%= simple_form_for [@bike, @booking],
                                     html: {
                                       data: {
-                                        controller: 'flatpickr',
-
+                                        controller: 'flatpickr'
                                       },
                                     class: "row",
                                     } do |f| %>
                                     <div class="col-sm">
                                       <%= f.input :start_date, as: :string,
 
-                              input_html: {
-                                data: {
-                                  flatpickr_target: 'startDateInput'
-
-                                },
-                              } %>
-                              </div>
+                                    input_html: {
+                                      data: {
+                                        flatpickr_target: 'startDateInput',
+                                        dynamic_booking_price_target: 'startDateInput',
+                                        action: 'change->dynamic-booking-price#updatePrice'
+                                      }
+                                    } %>
+                                    </div>
 
                     <div class="col-sm">
                     <%= f.input :end_date, as: :string,
                                 input_html: {
                                   data: {
-                                    flatpickr_target: 'endDateInput'
-                                  },
+                                    flatpickr_target: 'endDateInput',
+                                    dynamic_booking_price_target: 'endDateInput',
+                                    action: 'change->dynamic-booking-price#updatePrice'
+                                  }
                                 } %>
                     </div>
                     <div class="row">
                       <div class="col-sm-8">
-                        <h6>Total price : <%= @booking.total_price %></h6>
+                        <h6>Total price : <span data-dynamic-booking-price-target="priceHolder"></span> €</h6>
                       </div>
                       <div class="col-sm-4">
                         <%= f.submit 'Book now!', class: 'btn btn-primary' %>

@@ -12,7 +12,7 @@
       <p class="card-text"><strong><%= Bike.find(booking.bike_id).brand %></strong></p>
     </div>
     <p class="card-text"><em>Status: <%= booking.status %></em></p>
-    <p class="card-text">From <em><%= booking.start_date %></em> to <em><%= booking.end_date %></em></p>
+    <p class="card-text">From <em><%= booking.start_date.strftime("%d/%m/%Y") %></em> to <em><%= booking.end_date.strftime("%d/%m/%Y") %></em></p>
     <div class="d-flex justify-content-between">
       <div class="d-flex"><i class="fa-solid fa-location-dot"></i><p style="margin-left: 4px"><%= Bike.find(booking.bike_id).address %></p></div>
       <div><i class="fa-solid fa-euro-sign"></i><strong><%= (booking.total_price).round %></strong></div>

@@ -1,6 +1,6 @@
 <div class="header">
   <div class="container-header container">
-    <h1 class="fw-bold"">Hello <%= current_user.first_name %> 🎉</h1>
+    <h1 class="fw-bold">Hello <%= current_user.first_name %> 🎉</h1>
     <h6 class="welcome">Welcome back to your garage !</h6>
     <nav class="mt-5">
       <div class="nav nav-pills" id="nav-tab" role="tablist">
@@ -15,7 +15,7 @@
 <div class="container">
 
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
+    <div class="tab-pane fade show active" id="nav-bookings" role="tabpanel" aria-labelledby="nav-bookings-tab" tabindex="0">
       <section class="section">
         <div class="d-flex justify-content-start align-items-center">
           <% if @user_own_bookings.empty? %>
