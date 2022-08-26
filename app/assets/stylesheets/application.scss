@@ -12,3 +12,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.wrapper {
+  height: calc(100% - 57px - 100px);
+}
