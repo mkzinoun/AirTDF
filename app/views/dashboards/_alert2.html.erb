@@ -1,10 +1,10 @@
-<template id="my-template">
+<template id="my-template2">
   <swal-title>
   Are you sure ?
   </swal-title>
   <swal-icon type="warning" color="red"></swal-icon>
   <swal-button type="confirm">
-    <%= link_to "YES I'M SURE", bike_path(bike), class: "delete-link", data: {turbo_method: :delete} %>
+    <%= link_to "YES I'M SURE", cancel_booking_path(booking), class: "delete-link", data: {turbo_method: :patch} %>
   </swal-button>
   <swal-button type="cancel">
     CANCEL

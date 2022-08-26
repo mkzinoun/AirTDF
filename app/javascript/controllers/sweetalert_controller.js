@@ -24,4 +24,5 @@ export default class extends Controller {
       template: '#my-template2'
     })
   }
+
 }

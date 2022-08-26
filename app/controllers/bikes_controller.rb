@@ -12,14 +12,13 @@ class BikesController < ApplicationController
   def show
     @bike = Bike.find(params[:id])
     @owner = @bike.user
-    @markers = @bike.geocode.map do
-      {
+    @markers =
+      [{
         lat: @bike.latitude,
         lng: @bike.longitude,
         info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
         image_url: helpers.asset_url("logo.png")
-      }
-    end
+      }]
     if params[:booking_id]
       @booking = Booking.find(params[:booking_id])
     else
