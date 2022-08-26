@@ -1,4 +1,4 @@
-<div class="card", style="height: 200px">
+<div class="card">
   <%= link_to bike_path(Bike.find(booking.bike_id)) do %>
     <% if Bike.find(booking.bike_id).photo.attached? %>
       <img class="card-img-top img-size" src="<%= cl_image_path Bike.find(booking.bike_id).photo.key %>" alt="Card image cap">
@@ -9,21 +9,28 @@
   <div class="card-body">
     <div class="d-flex justify-content-between">
       <span class="badge rounded-5 text-bg-dark mb-3"><%= Bike.find(booking.bike_id).bike_type %></span>
-      <p class="card-text"><strong><%= Bike.find(booking.bike_id).brand %></strong></p>
       <div class="d-flex">
-        <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <h6 class="text-black"><i class="fa-solid fa-trash-can"></i></h6>
-        <% end %>
-        <%= link_to bike_path(Bike.find(booking.bike_id), :booking_id => booking.id) do %>
-          <h6 class="text-black"><i class="fa-solid fa-pen"></i></h6>
-        <% end %>
+        <div class="dropdown">
+          <h6 class="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-ellipsis"></i>
+          </h6>
+          <ul class="dropdown-menu">
+            <%= link_to bike_path(Bike.find(booking.bike_id), :booking_id => booking.id) do %>
+              <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-pen px-2"></i>Edit</p></li>
+            <% end %>
+            <%= link_to booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do  %>
+              <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-xmark px-2"></i>Cancel</p></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-    <p class="card-text"><em>Status: <%= booking.status %></em></p>
+    <p class="card-text"><strong>Model: <%= Bike.find(booking.bike_id).brand %></strong></p>
     <p class="card-text">From <em><%= booking.start_date %></em> to <em><%= booking.end_date %></em></p>
+    <div class="d-flex"><i class="fa-solid fa-location-dot"></i><p style="margin-left: 4px"><%= Bike.find(booking.bike_id).address %></p></div>
     <div class="d-flex justify-content-between">
-      <div class="d-flex"><i class="fa-solid fa-location-dot"></i><p style="margin-left: 4px"><%= Bike.find(booking.bike_id).address %></p></div>
-      <div><i class="fa-solid fa-euro-sign"></i><strong><%= (booking.total_price).round %></strong></div>
+      <p class="card-text badge text-bg-primary"><%= booking.status %></p>
+      <div><strong><%= (booking.total_price).round %></strong><i class="fa-solid fa-euro-sign"></i></div>
     </div>
   </div>
 </div>

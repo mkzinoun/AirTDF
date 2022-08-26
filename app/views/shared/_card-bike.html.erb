@@ -8,20 +8,28 @@
   <% end %>
   <div class="card-body">
     <div class="d-flex justify-content-between">
-      <span class="badge rounded-5 text-bg-dark mb-3"><%= bike.bike_type %></span>
+      <div class="d-flex"><i class="fa-solid fa-location-dot"></i><p style="margin-left: 4px"><%= Geocoder.search([bike.latitude, bike.longitude]).first.city %></p></div>
       <p class="card-text"><strong><%= bike.brand %></strong></p>
       <div class="d-flex">
-        <%= link_to bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          <h6 class="text-black"><i class="fa-solid fa-trash-can"></i></h6>
-        <% end %>
-        <%= link_to edit_bike_path(bike) do %>
-          <h6 class="text-black"><i class="fa-solid fa-pen"></i></h6>
-        <% end %>
+        <div class="dropdown">
+          <h6 class="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-ellipsis"></i>
+          </h6>
+          <ul class="dropdown-menu">
+            <%= link_to bike_path(bike), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-trash-can px-2"></i>Delete</p></li>
+            <% end %>
+            <%= link_to edit_bike_path(bike) do  %>
+              <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-pen px-2"></i>Edit</p></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
     <p class="card-text"><em><%= bike.description %></em></p>
     <div class="d-flex justify-content-between">
-      <div class="d-flex"><i class="fa-solid fa-location-dot"></i><p style="margin-left: 4px"><%= Geocoder.search([bike.latitude, bike.longitude]).first.city %></p></div>
+      <div class="d-flex"><span class="badge rounded-5 text-bg-dark mb-3"><%= bike.bike_type %></span></div>
+
       <div><i class="fa-solid fa-euro-sign"></i><strong><%= (bike.price_per_day).round %>/day</strong></div>
     </div>
   </div>

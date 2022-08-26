@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-header container">
   <div class="row">
     <div class="col-6">
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -10,6 +10,16 @@
         </ol>
       </nav>
       <h1><%= @bike.brand %></h1>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+       <% if @booking.status != 'cancelled' %>
+          <%= link_to dashboard_path do %>
+            <button type="button" class="btn btn-outline-primary mx-2"><i class="fa-solid fa-pen pe-2"></i>Edit</button>
+          <% end %>
+          <%= link_to dashboard_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do  %>
+            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-xmark px-2"></i>Cancel</button>
+          <% end %>
+        <% end %>
     </div>
   </div>
 
@@ -35,26 +45,29 @@
     <div class="row">
       <div class="card-trip-infos col-7">
         <div class="row px-4">
-          <div class="card-owner">
-            <div class="col-sm-6">
+           <div class="col-sm-6 ms-2">
               <p>Owner</p>
               <h6><%= @owner.first_name %> <%= @owner.last_name %></li></h6>
             </div>
+          <div class="card-owner row">
+            <div class="col-sm-6">
+              <h6><i class="fa-solid fa-bicycle p-2"></i><%= @bike.bike_type %></h6>
+            </div>
+            <div class="col-sm-6">
+              <h6><i class="fa-solid fa-brush p-2"></i><%= @bike.brand %></h6>
+            </div>
+            <div class="col-sm-6">
+              <h6><i class="fa-solid fa-location-dot p-2"></i><%= @bike.address %></h6>
+            </div>
+            <div class="col-sm-6">
+              <h6><i class="fa-solid fa-circle-info p-2"></i><%= @bike.description %></h6>
+            </div>
+            <div class="col-sm-6">
+              <button id="dayprice" disabled data-bs-toggle="button"><%= @bike.price_per_day %>€/day</button>
+            </div>
           </div>
-          <div class="col-sm-6">
-            <h6><i class="fa-solid fa-bicycle p-2"></i><%= @bike.bike_type %></h6>
-          </div>
-          <div class="col-sm-6">
-            <h6><i class="fa-solid fa-brush p-2"></i><%= @bike.brand %></h6>
-          </div>
-          <div class="col-sm-6">
-            <h6><i class="fa-solid fa-location-dot p-2"></i><%= @bike.address %></h6>
-          </div>
-          <div class="col-sm-6">
-            <h6><i class="fa-solid fa-circle-info p-2"></i><%= @bike.description %></h6>
-          </div>
-          <div class="col-sm-6">
-            <button id="dayprice" disabled data-bs-toggle="button"><%= @bike.price_per_day %>€/day</button>
+          <div class="col-sm-12 py-5">
+            <%= render "shared/list-group" %>
           </div>
           <div>
             <img image_tag (cl_image_path @owner.photo.key) class="avatar" />
@@ -96,7 +109,7 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-8">
-                        <h6>Price total: </h6>
+                        <h6>Total price : <%= @booking.total_price %></h6>
                       </div>
                       <div class="col-sm-4">
                         <%= f.submit 'Book now!', class: 'btn btn-primary' %>

@@ -5,6 +5,11 @@
   margin-top: 15px;
 }
 
+.card-body {
+  text-decoration: none !important;
+  padding-bottom: -4px;
+}
+
 .card-bike {
   display: flex;
   flex-direction: column;
@@ -15,7 +20,6 @@
   background: #FFFFFF;
   border: 1px solid #EAECEE;
   border-radius: 12px;
-
 }
 
 .card-bike-img {
@@ -26,8 +30,9 @@
   border-radius: 8px;
 }
 
-.card-bike-body {
 
+.card-bike-body {
+  text-decoration: none !important;
 }
 
 .card-bike-type {
