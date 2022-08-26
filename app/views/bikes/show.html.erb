@@ -68,10 +68,11 @@
             </div>
           </div>
           <div class="col-sm-12 py-5">
+            <h4>How it works ?</h4>
             <%= render "shared/list-group" %>
           </div>
           <div>
-            <%= image_tag (cl_image_path @bike.user.photo.key), class: "card-trip-user avatar-bordered"%>
+            <%= image_tag (cl_image_path @owner.photo.key), class: "card-trip-user avatar-bordered"%>
           </div>
         </div>
       </div>

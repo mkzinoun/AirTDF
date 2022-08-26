@@ -1,0 +1,16 @@
+<template id="my-template">
+  <swal-title>
+  Are you sure ?
+  </swal-title>
+  <swal-icon type="warning" color="red"></swal-icon>
+  <swal-button type="confirm">
+    <%= link_to "YES I'M SURE", bike_path(bike), data: {turbo_method: :delete} %>
+  </swal-button>
+  <swal-button type="cancel">
+    CANCEL
+  </swal-button>
+  <swal-param name="allowEscapeKey" value="false" />
+  <swal-param
+    name="customClass"
+    value='{ "popup": "my-popup" }' />
+</template>
