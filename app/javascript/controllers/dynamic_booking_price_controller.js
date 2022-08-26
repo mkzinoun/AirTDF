@@ -41,11 +41,12 @@ export default class extends Controller {
       const diffTime = (Date.parse(endDate) - Date.parse(startDate.substring(0,10)))
       // Turn milliseconds to days
       var days = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+        if (days < 1 ) { days = 1 };
     } else {
       var days = 0
     }
     // Add 1 day by default
-    return days + 1
+    return days
   }
 
   #totalValue(days) {
