@@ -17,7 +17,7 @@ class BikesController < ApplicationController
         lat: @bike.latitude,
         lng: @bike.longitude,
         info_window: render_to_string(partial: "info_window", locals: { bike: @bike }),
-        image_url: helpers.asset_url("logo.png")
+        image_url: helpers.asset_url("logo-border.png")
       }
     end
     if params[:booking_id]
