@@ -1,5 +1,4 @@
 .footer {
-  background: $body-bg;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -29,4 +28,9 @@
 .grey-link {
   color: grey !important;
   text-decoration: none !important;
+}
+
+
+.footer-name {
+  font-family: 'Heebo', sans-serif;
 }

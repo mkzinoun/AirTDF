@@ -16,7 +16,7 @@
           </h6>
           <ul class="dropdown-menu">
             <%= link_to bike_path(Bike.find(booking.bike_id), :booking_id => booking.id) do %>
-              <li><p class="dropdown-item text-decoration-none"><i class="fa-solid fa-pen px-2"></i>Edit</p></li>
+              <li><p class="dropdown-item"><i class="fa-solid fa-pen px-2"></i>Edit</p></li>
             <% end %>
             <li><p data-controller="sweetalert" data-action="click->sweetalert#booking_alert" id="sweet-alert-demo" class="dropdown-item text-decoration-none"><i class="fa-solid fa-trash-can px-2"></i>Cancel</p></li>
             <%= render "alert", booking: booking %>
